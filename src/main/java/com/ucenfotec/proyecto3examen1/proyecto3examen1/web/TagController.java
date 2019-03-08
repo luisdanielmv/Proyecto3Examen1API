@@ -5,6 +5,7 @@ import com.ucenfotec.proyecto3examen1.proyecto3examen1.service.TagService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/tag")
@@ -26,7 +27,7 @@ public class TagController {
     }
 
     @PostMapping()
-    public Tag tagTodo(@RequestBody Tag tag) {
+    public Tag postTag(@RequestBody Tag tag) {
         return tagService.save(tag);
     }
 
@@ -35,4 +36,11 @@ public class TagController {
         return tagService.update(tag);
     }
 
+    @PostMapping("/list")
+    public List<Tag> postTagList(@RequestBody List<Tag> tagList) {
+        for (int i = 0; i < tagList.size(); i++) {
+            tagList.set(i, tagService.save(tagList.get(i)));
+        }
+        return tagList;
+    }
 }

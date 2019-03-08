@@ -22,6 +22,7 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User owner;
 
+
     public Long getId() {
         return id;
     }
@@ -53,5 +54,4 @@ public class Comment {
     public void setOwner(User owner) {
         this.owner = owner;
     }
-
 }

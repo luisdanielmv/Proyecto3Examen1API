@@ -1,7 +1,11 @@
 package com.ucenfotec.proyecto3examen1.proyecto3examen1.domain;
 
-import javax.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Tag {
@@ -12,6 +16,7 @@ public class Tag {
     private Long id;
     @Column
     private String name;
+
 
     public Long getId() {
         return id;
@@ -28,5 +33,4 @@ public class Tag {
     public void setName(String name) {
         this.name = name;
     }
-
 }

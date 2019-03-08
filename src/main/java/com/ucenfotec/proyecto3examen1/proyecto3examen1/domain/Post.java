@@ -29,22 +29,21 @@ public class Post {
 
     @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.ALL})
+            cascade={CascadeType.MERGE,CascadeType.REFRESH})
     @JoinTable(
             name = "post_tags",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> tags = new HashSet<>();
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(
+            cascade={CascadeType.MERGE,CascadeType.REFRESH})
     @OrderBy("id")
     private Set<Comment> comments = new HashSet<>();
 
     @ManyToMany(
             fetch = FetchType.LAZY,
-            cascade = {
-                    CascadeType.ALL})
+            cascade={CascadeType.MERGE,CascadeType.REFRESH})
     @JoinTable(
             name = "liked_posts",
             joinColumns = @JoinColumn(name = "post_id"),
