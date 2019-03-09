@@ -18,7 +18,7 @@ public class User {
     @ManyToMany(
             fetch = FetchType.LAZY,
             cascade = {
-                    CascadeType.ALL})
+                    CascadeType.MERGE})
     @JoinTable(
             name = "preferences",
             joinColumns = @JoinColumn(name = "user_id"),
