@@ -1,6 +1,7 @@
 package com.ucenfotec.proyecto3examen1.proyecto3examen1.web;
 
 import com.ucenfotec.proyecto3examen1.proyecto3examen1.domain.Post;
+import com.ucenfotec.proyecto3examen1.proyecto3examen1.domain.User;
 import com.ucenfotec.proyecto3examen1.proyecto3examen1.service.PostService;
 
 
@@ -40,7 +41,9 @@ public class PostController {
 
     @PutMapping()
     public Post putPost(@RequestBody Post post) {
-        return postService.update(post);
+        Post tdt = postService.findById(post.getId());
+        tdt.setComments(post.getComments());
+        return postService.update(tdt);
     }
 
     @PutMapping("/update-status/{postId}")
@@ -55,5 +58,20 @@ public class PostController {
         Post tdt = postService.findById(post.getId());
         tdt.setLikers(post.getLikers());
         return postService.update(tdt);
+    }
+
+    @GetMapping("/by-owner/{id}")
+    public List<Post> getOwnedPosts(@PathVariable Long id) {
+        return postService.findByOwnerId(id);
+    }
+
+    @PostMapping("/by-user-preferences")
+    public List<Post> getPreferredPosts(@RequestBody User user) {
+        return postService.findByUserPreferences(user.getPreferences());
+    }
+
+    @PostMapping("/liked-by-user")
+    public List<Post> getLikedPosts(@RequestBody User user) {
+        return postService.findByLikers(user);
     }
 }

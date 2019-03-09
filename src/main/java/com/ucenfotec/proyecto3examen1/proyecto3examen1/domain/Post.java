@@ -37,7 +37,7 @@ public class Post {
     private Set<Tag> tags = new HashSet<>();
 
     @OneToMany(
-            cascade={CascadeType.MERGE,CascadeType.REFRESH})
+            cascade={CascadeType.MERGE, CascadeType.REFRESH})
     @OrderBy("id")
     private Set<Comment> comments = new HashSet<>();
 
